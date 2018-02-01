@@ -60,3 +60,4 @@ PS1='
 %F{244}%# %F{reset}'
 
 source $HOME/.fzf.zsh
+source $HOME/.bashrc
