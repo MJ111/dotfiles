@@ -27,9 +27,6 @@
 [push]
 	default = simple
 
-[commit]
-	gpgsign = true
-
 [help]
 	autocorrect = 1
 

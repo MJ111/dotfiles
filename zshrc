@@ -6,10 +6,11 @@ export INCLUDES=$HOME/.local/share/dotfiles
 source $DOTFILES/env
 source $DOTFILES/aliases
 
+source $INCLUDES/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $INCLUDES/zsh-autosuggestions/zsh-autosuggestions.zsh
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=yellow' # suggestion font color
 source $INCLUDES/zsh-completions/zsh-completions.plugin.zsh
 source $INCLUDES/zsh-history-substring-search/zsh-history-substring-search.zsh
-source $INCLUDES/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # theme
 source $INCLUDES/geometry/geometry.zsh
@@ -46,22 +47,6 @@ bindkey -v
 
 bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
-
-git_prompt() {
-  BRANCH=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/*\(.*\)/\1/')
-
-  if [ ! -z $BRANCH ]; then
-    echo -n "%F{yellow}$BRANCH"
-
-    if [ ! -z "$(git status --short)" ]; then
-      echo " %F{red}✗"
-    fi
-  fi
-}
-
-PS1='
-%F{blue}%~$(git_prompt)
-%F{244}%# %F{reset}'
 
 source $HOME/.fzf.zsh
 source $HOME/.bashrc
