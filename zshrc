@@ -11,6 +11,9 @@ source $INCLUDES/zsh-completions/zsh-completions.plugin.zsh
 source $INCLUDES/zsh-history-substring-search/zsh-history-substring-search.zsh
 source $INCLUDES/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# theme
+source $INCLUDES/geometry/geometry.zsh
+
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
