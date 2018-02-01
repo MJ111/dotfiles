@@ -14,26 +14,17 @@ mkdir $DOTFILES
 cd $DOTFILES
 
 git init
-git remote add origin git@github.com:joshtronic/dotfiles.git
+git remote add origin git@github.com:mj111/dotfiles.git
 git pull origin master
 git submodule update --init --recursive
 
 rm -rf \
   $DOTFZF \
   $DOTLOCAL \
-  $HOME/.bashrc \
   $HOME/.gitconfig \
-  $HOME/.config/gtk-3.0/gtk.css \
-  $HOME/.screenrc \
-  $HOME/.vim \
-  $HOME/.vimrc \
   $HOME/.zshrc
 
-ln -s $DOTFILES/bashrc $HOME/.bashrc
 ln -s $DOTFILES/gitconfig $HOME/.gitconfig
-ln -s $DOTFILES/gtk.css $HOME/.config/gtk-3.0/gtk.css
-ln -s $DOTFILES/screenrc $HOME/.screenrc
-ln -s $DOTFILES/vimrc $HOME/.vimrc
 ln -s $DOTFILES/zshrc $HOME/.zshrc
 
 mkdir -p \
