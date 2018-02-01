@@ -35,6 +35,7 @@ mkdir -p \
 GITCLONE https://github.com/junegunn/fzf.git $DOTFZF
 $DOTFZF/install --key-bindings --completion --no-update-rc
 
+GITCLONE https://github.com/zsh-users/zsh-autosuggestions $DOTLOCAL/zsh-autosuggestions
 GITCLONE https://github.com/zsh-users/zsh-completions.git $DOTLOCAL/zsh-completions
 GITCLONE https://github.com/zsh-users/zsh-history-substring-search.git $DOTLOCAL/zsh-history-substring-search
 GITCLONE https://github.com/zsh-users/zsh-syntax-highlighting.git $DOTLOCAL/zsh-syntax-highlighting
