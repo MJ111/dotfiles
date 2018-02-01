@@ -1,9 +1,9 @@
 [user]
-	name = Josh Sherman
-	email = joshsherman@gmail.com
+	name = MinJeong Kim
+	email = min7859@gmail.com
 
 [github]
-	user = joshtronic
+	user = mj111
 
 [credential]
 	helper = cache --timeout=86400
