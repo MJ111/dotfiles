@@ -21,9 +21,11 @@ git submodule update --init --recursive
 rm -rf \
   $DOTFZF \
   $DOTLOCAL \
+  $HOME/.bashrc \
   $HOME/.gitconfig \
   $HOME/.zshrc
 
+ln -s $DOTFILES/bashrc $HOME/.bashrc
 ln -s $DOTFILES/gitconfig $HOME/.gitconfig
 ln -s $DOTFILES/zshrc $HOME/.zshrc
 
