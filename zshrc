@@ -48,5 +48,7 @@ bindkey -v
 bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
 
+bindkey '^[[3~' backward-delete-char
+
 source $HOME/.fzf.zsh
 source $HOME/.bashrc

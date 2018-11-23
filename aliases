@@ -43,3 +43,17 @@ alias HEAD='http HEAD'
 function cd {
   builtin cd "$@" && ls -F
 }
+
+# use a long listing format
+alias ll='ls -la'
+# show hidden files
+alias l.='ls -d .*'
+
+# get rid of command not found
+alias cd..='cd ..'
+alias ..='cd ..'
+alias ...='cd ../../../'
+alias ....='cd ../../../../'
+alias .....='cd ../../../../../'
+alias .4='cd ../../../../'
+alias .5='cd ../../../../../'
