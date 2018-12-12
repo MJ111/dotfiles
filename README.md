@@ -7,9 +7,3 @@ life. My dotfiles, without me, are useless. Without my dotfiles, I am useless.
 ```shell
 source <(curl -s https://raw.githubusercontent.com/MJ111/dotfiles/master/install)
 ```
-
-# Prerequisite
-
-```
-$ brew install zsh
-```
