@@ -1,4 +1,6 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
+
+brew install zsh
 
 if [ -z "$HOME" ]; then echo "Seems you're \$HOMEless :("; exit 1; fi
 
