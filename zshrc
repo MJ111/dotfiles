@@ -21,7 +21,7 @@ SAVEHIST=10000
 
 zstyle ':completion:*' menu select
 zstyle ':completion:*' completer _complete
-zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
+#zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
 
 autoload -U compinit && compinit
 zmodload -i zsh/complist
@@ -42,13 +42,6 @@ setopt hist_verify
 setopt inc_append_history
 setopt interactivecomments
 setopt share_history
-
-bindkey -v
-
-bindkey '^a' beginning-of-line
-bindkey '^e' end-of-line
-
-bindkey '^[[3~' backward-delete-char
 
 source $HOME/.fzf.zsh
 source $HOME/.bashrc
