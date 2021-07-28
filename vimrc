@@ -3,22 +3,18 @@ set t_Co=256
 set background=dark
 let g:solarized_termcolors=256
 let g:solarized_termtrans=1
-colorscheme solarized
 
 set number
-set visualbell
 syntax on
-color flattened_dark
-set background=dark
 
 " Ensures misspellings are highlighted
 hi SpellBad ctermfg=white ctermbg=red
 
-set ai et si sts=2 sw=2 ts=2
-set cc=80,100,120
-set hid
-set hls ic is
-set nu rnu
+"set ai et si sts=2 sw=2 ts=2
+"set cc=80,100,120
+"set hid
+"set hls ic is
+"set nu rnu
 
 set directory=~/.local/share/vim/swap,/tmp
 set undodir=~/.local/share/vim/undo,/tmp

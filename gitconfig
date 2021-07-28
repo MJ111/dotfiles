@@ -30,7 +30,6 @@
   rebase = true
 
 [commit]
-  gpgsign = true
   template = ~/.dotfiles/gitmessage
   verbose = true
 
