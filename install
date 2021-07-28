@@ -12,8 +12,6 @@ DOTLOCAL=$HOME/.local/share/dotfiles
 mkdir "$DOTFZF"
 mkdir -p "$DOTLOCAL"
 
-alias GITCLONE="git clone --depth=1"
-
 cd "$HOME" || exit
 rm -rf "$DOTFILES"
 git clone git@github.com:mj111/dotfiles.git "$DOTFILES"
@@ -45,6 +43,8 @@ ln -s "$DOTFILES/screenrc" "$HOME/.screenrc"
 ln -s "$DOTFILES/vimrc" "$HOME/.vimrc"
 ln -s "$DOTFILES/zshrc" "$HOME/.zshrc"
 
+GITCLONE="git clone --depth=1"
+
 $GITCLONE https://github.com/junegunn/fzf.git "$DOTFZF"
 "$DOTFZF/install" --key-bindings --completion --no-update-rc
 
@@ -56,7 +56,6 @@ ZSHPLUGS=(
 
 for INDEX in ${!ZSHPLUGS[*]}; do
   ZSHPLUG="${ZSHPLUGS[$INDEX]}"
-  mkdir "$DOTLOCAL/$ZSHPLUG"
   $GITCLONE "https://github.com/zsh-users/$ZSHPLUG.git" "$DOTLOCAL/$ZSHPLUG"
 done
 
