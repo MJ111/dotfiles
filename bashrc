@@ -12,10 +12,6 @@ source /usr/share/bash-completion/bash_completion
 
 eval "$(dircolors "$DOTFILES/dircolors")"
 
-bind 'set completion-ignore-case on'
-bind 'set show-all-if-ambiguous on'
-bind 'TAB:menu-complete'
-
 RESET="$(tput sgr0)"
 
 BLUE="$(tput setaf 4)"
