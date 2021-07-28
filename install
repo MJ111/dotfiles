@@ -9,7 +9,6 @@ DOTFILES=$HOME/.dotfiles
 DOTFZF=$HOME/.fzf
 DOTLOCAL=$HOME/.local/share/dotfiles
 
-mkdir "$DOTFZF"
 mkdir -p "$DOTLOCAL"
 
 cd "$HOME" || exit
