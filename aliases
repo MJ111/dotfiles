@@ -5,12 +5,34 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
 
+# Colorize output, make ls human readable and classify...
+if [[ `uname` == Darwin ]]; then
+  alias dircolors='gdircolors'
+  alias ls='gls --color=auto -hF'
+else
+  alias ls='ls --color=auto -hF'
+
+  # ...and standardize to macOS naming on Linux
+  alias open='xdg-open'
+fi
+
+# Colorize cat with bat
+alias cat='bat'
+
+# Disk utility aliases
+alias df='df -h'
+alias du='du -h'
+
 # Colorize output and some exclusions
 alias grep="grep --color=auto --exclude-dir={.git,artwork,node_modules,vendor}"
 
 # Git functions
-git_branch() {
-  (command git symbolic-ref -q HEAD || command git name-rev --name-only --no-undefined --always HEAD) 2>/dev/null
+git_current_branch() {
+  (command git symbolic-ref -q HEAD || command git name-rev --name-only --no-undefined --always HEAD) 2> /dev/null
+}
+
+git_default_branch() {
+  (git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@') 2> /dev/null
 }
 
 # Git aliases
@@ -18,19 +40,27 @@ alias g='git'
 alias ga='git add'
 alias gaa='git add --all'
 alias gb='git branch'
-alias gc='git commit -v'
-alias gca='git commit -a -v'
+alias gc='git commit'
+alias gca='git commit -a'
+alias gcam='git commit -a --amend'
 alias gcb='git checkout -b'
-alias gcm='git checkout master'
+alias gcl='git clone'
+alias gcm='git checkout $(git_default_branch)'
 alias gco='git checkout'
+alias fgco='git checkout $(git branch | sed "s/\*//" | fzf)'
 alias gd='git diff'
+alias gds='git diff --staged'
 alias gf='git fetch'
-alias gl='git pull origin $(git_branch)'
+alias gfm='git fetch origin $(git_default_branch):$(git_default_branch)'
+alias gl='git pull origin $(git_current_branch)'
 alias glg='git log'
 alias gm='git merge'
-alias gmm='git merge master'
+alias gmm='git merge $(git_default_branch)'
 alias gmv='git mv'
-alias gp='git push origin $(git_branch)'
+alias gp='git push origin $(git_current_branch)'
+alias gpf='git push origin $(git_current_branch) --force'
+alias grb='git rebase'
+alias grbm='git rebase $(git_default_branch)'
 alias grm='git rm'
 alias gst='git status'
 
@@ -39,9 +69,33 @@ alias GET='http'
 alias POST='http POST'
 alias HEAD='http HEAD'
 
+# Nvim takeover
+alias vim='nvim'
+alias vimdiff='nvim -d'
+
 # `ls` after `cd`
 function cd {
-  builtin cd "$@" && ls -F
+  builtin cd "$@" && ls
+}
+
+# Run `nvm` init script on demand to avoid constant slow downs
+function nvm {
+  if [ -z ${NVM_DIR+x} ]; then
+    export NVM_DIR="$HOME/.nvm"
+
+    if [ -s "$NVM_DIR/nvm.sh" ]; then
+      source "$NVM_DIR/nvm.sh"
+    elif [ -s "/usr/share/nvm/init-nvm.sh" ]; then
+      source /usr/share/nvm/init-nvm.sh
+    fi
+
+    nvm "$@"
+  fi
+}
+
+# PID Port
+function pp {
+  ss -lptn sport = :$1 | grep -Eo 'pid=[0-9]+' | cut -c5-
 }
 
 # use a long listing format

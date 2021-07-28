@@ -1,49 +1,88 @@
 #!/usr/bin/env bash
 
-brew install zsh
+if [ -z "$HOME" ]; then
+  echo "Seems you're \$HOMEless :("; exit 1;
+fi
 
-if [ -z "$HOME" ]; then echo "Seems you're \$HOMEless :("; exit 1; fi
-
+DOTCONFIG=$HOME/.config
 DOTFILES=$HOME/.dotfiles
 DOTFZF=$HOME/.fzf
 DOTLOCAL=$HOME/.local/share/dotfiles
 
 alias GITCLONE="git clone --depth=1"
 
-cd $HOME
-rm -rf $DOTFILES
-mkdir $DOTFILES
-cd $DOTFILES
-
-git init
-git remote add origin git@github.com:mj111/dotfiles.git
-git pull origin master
-git submodule update --init --recursive
+cd "$HOME" || exit
+rm -rf "$DOTFILES"
+git clone git@github.com:mj111/dotfiles.git "$DOTFILES"
+cd "$DOTFILES" || exit
 
 rm -rf \
-  $DOTFZF \
-  $DOTLOCAL \
-  $HOME/.bashrc \
-  $HOME/.gitconfig \
-  $HOME/.zshrc
-
-ln -s $DOTFILES/bashrc $HOME/.bashrc
-ln -s $DOTFILES/gitconfig $HOME/.gitconfig
-ln -s $DOTFILES/zshrc $HOME/.zshrc
+  "$DOTCONFIG/nvim/init.vim" \
+  "$DOTFZF" \
+  "$DOTLOCAL" \
+  "$HOME/.bashrc" \
+  "$HOME/.gitconfig" \
+  "$HOME/.screenrc" \
+  "$HOME/.vim" \
+  "$HOME/.vimrc" \
+  "$HOME/.zshrc"
 
 mkdir -p \
-  $DOTLOCAL
+  "$DOTCONFIG/"{gtk-3.0,nvim} \
+  "$DOTLOCAL" \
+  "$HOME/.local/share/vim/"{swap,undo} \
+  "$HOME/.themes/custom/gnome-shell" \
+  "$HOME/.vim/colors" \
+  "$HOME/.vim/pack/plugins/start"
 
-GITCLONE https://github.com/junegunn/fzf.git $DOTFZF
-$DOTFZF/install --key-bindings --completion --no-update-rc
+ln -s "$DOTFILES/bashrc" "$HOME/.bashrc"
+ln -s "$DOTFILES/gitconfig" "$HOME/.gitconfig"
+ln -s "$DOTFILES/init.vim" "$DOTCONFIG/nvim/init.vim"
+ln -s "$DOTFILES/screenrc" "$HOME/.screenrc"
+ln -s "$DOTFILES/vimrc" "$HOME/.vimrc"
+ln -s "$DOTFILES/zshrc" "$HOME/.zshrc"
 
-GITCLONE https://github.com/zsh-users/zsh-autosuggestions $DOTLOCAL/zsh-autosuggestions
-GITCLONE https://github.com/zsh-users/zsh-completions.git $DOTLOCAL/zsh-completions
-GITCLONE https://github.com/zsh-users/zsh-history-substring-search.git $DOTLOCAL/zsh-history-substring-search
-GITCLONE https://github.com/zsh-users/zsh-syntax-highlighting.git $DOTLOCAL/zsh-syntax-highlighting
+$GITCLONE https://github.com/junegunn/fzf.git "$DOTFZF"
+"$DOTFZF/install" --key-bindings --completion --no-update-rc
 
-cd $HOME
-rm -f $HOME/.zcompdump*
+ZSHPLUGS=(
+  "zsh-completions"
+  "zsh-history-substring-search"
+  "zsh-syntax-highlighting"
+)
+
+for INDEX in ${!ZSHPLUGS[*]}; do
+  ZSHPLUG="${ZSHPLUGS[$INDEX]}"
+  $GITCLONE "https://github.com/zsh-users/$ZSHPLUG.git" "$DOTLOCAL/$ZSHPLUG"
+done
+
+VIMPLUGS=(
+  # File exploration and navigation
+  "junegunn/fzf.vim"
+
+  # Languages and syntax
+  "sheerun/vim-polyglot"
+
+  # Style guide and linting
+  "dense-analysis/ale"
+  "editorconfig/editorconfig-vim"
+
+  # TypeScript
+  "leafgarland/typescript-vim"
+  "Quramy/tsuquyomi"
+)
+
+for INDEX in ${!VIMPLUGS[*]}; do
+  VIMPLUG="${VIMPLUGS[$INDEX]}"
+  PLUGDIR=$(echo "$VIMPLUG" | cut -d '/' -f2)
+
+  $GITCLONE "https://github.com/$VIMPLUG.git" "$HOME/.vim/pack/plugins/start/$PLUGDIR"
+done
+
+curl -o "$HOME/.vim/colors/flattened_dark.vim" https://raw.githubusercontent.com/romainl/flattened/master/colors/flattened_dark.vim
+
+cd "$HOME" || exit
+rm -f "${HOME}/.zcompdump*"
 
 echo
-echo 'DONEZO!!~!'
+echo "ENJOY! :)"
