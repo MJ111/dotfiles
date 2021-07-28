@@ -5,12 +5,6 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
 
-# Colorize output, make ls human readable and classify...
-alias ls='ls --color=auto -hF'
-
-# Colorize cat with bat
-alias cat='bat'
-
 # Disk utility aliases
 alias df='df -h'
 alias du='du -h'
