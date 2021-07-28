@@ -46,12 +46,13 @@ ln -s "$DOTFILES/zshrc" "$HOME/.zshrc"
 GITCLONE="git clone --depth=1"
 
 $GITCLONE https://github.com/junegunn/fzf.git "$DOTFZF"
-"$DOTFZF/install" --key-bindings --completion --no-update-rc
+"$DOTFZF/install" --completion --no-update-rc
 
 ZSHPLUGS=(
   "zsh-completions"
   "zsh-history-substring-search"
   "zsh-syntax-highlighting"
+  "zsh-autosuggestions"
 )
 
 for INDEX in ${!ZSHPLUGS[*]}; do

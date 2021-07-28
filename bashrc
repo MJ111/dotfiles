@@ -8,8 +8,6 @@ source "$DOTFILES/env"
 source "$DOTFILES/aliases"
 source "$HOME/.fzf.bash"
 
-source /usr/share/bash-completion/bash_completion
-
 # uncomment this when using nvm
 #export NVM_DIR="$HOME/.nvm"
 #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
