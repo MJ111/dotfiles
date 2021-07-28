@@ -10,8 +10,6 @@ source "$HOME/.fzf.bash"
 
 source /usr/share/bash-completion/bash_completion
 
-eval "$(dircolors "$DOTFILES/dircolors")"
-
 RESET="$(tput sgr0)"
 
 BLUE="$(tput setaf 4)"
