@@ -82,8 +82,6 @@ for INDEX in ${!VIMPLUGS[*]}; do
   $GITCLONE "https://github.com/$VIMPLUG.git" "$HOME/.vim/pack/plugins/start/$PLUGDIR"
 done
 
-curl -o "$HOME/.vim/colors/flattened_dark.vim" https://raw.githubusercontent.com/romainl/flattened/master/colors/flattened_dark.vim
-
 cd "$HOME" || exit
 rm -f "${HOME}/.zcompdump*"
 
