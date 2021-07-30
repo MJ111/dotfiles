@@ -39,10 +39,5 @@ setopt inc_append_history
 setopt interactivecomments
 setopt share_history
 
-bindkey -v
-
-bindkey '^a' beginning-of-line
-bindkey '^e' end-of-line
-
 source $HOME/.fzf.zsh
 source $HOME/.bashrc
