@@ -7,6 +7,7 @@ fi
 DOTCONFIG=$HOME/.config
 DOTFILES=$HOME/.dotfiles
 DOTFZF=$HOME/.fzf
+DOTZ=$HOME/.z
 DOTLOCAL=$HOME/.local/share/dotfiles
 
 mkdir -p "$DOTLOCAL"
@@ -44,6 +45,8 @@ GITCLONE="git clone --depth=1"
 
 $GITCLONE https://github.com/junegunn/fzf.git "$DOTFZF"
 "$DOTFZF/install" --completion --no-update-rc
+
+$GITCLONE https://github.com/rupa/z.git "$DOTZ"
 
 ZSHPLUGS=(
   "zsh-completions"
